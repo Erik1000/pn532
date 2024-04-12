@@ -16,7 +16,7 @@ pub struct BorrowedRequest<'a> {
 impl<'a> BorrowedRequest<'a> {
     #[inline]
     pub const fn new(command: Command, data: &'a [u8]) -> Self {
-        Self {command, data}
+        Self { command, data }
     }
 }
 

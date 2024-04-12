@@ -9,7 +9,7 @@ use crate::spi::SPIInterface;
 use crate::Pn532;
 
 /// used for doc tests
-pub fn get_pn532() -> Pn532<SPIInterface<NoOpSPI, NoOpCS>, NoOpTimer> {
+pub fn get_pn532() -> Pn532<SPIInterface<NoOpSPI, NoOpCS, Infallible>, NoOpTimer> {
     Pn532::new(
         SPIInterface {
             spi: NoOpSPI,
@@ -20,7 +20,7 @@ pub fn get_pn532() -> Pn532<SPIInterface<NoOpSPI, NoOpCS>, NoOpTimer> {
 }
 
 /// used for doc tests
-pub fn get_async_pn532() -> Pn532<SPIInterface<NoOpSPI, NoOpCS>, ()> {
+pub fn get_async_pn532() -> Pn532<SPIInterface<NoOpSPI, NoOpCS, Infallible>, ()> {
     Pn532::new(
         SPIInterface {
             spi: NoOpSPI,

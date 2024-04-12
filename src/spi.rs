@@ -35,23 +35,25 @@ pub const PN532_SPI_READY: u8 = as_lsb(0x01);
 
 /// SPI Interface without IRQ pin
 #[derive(Clone, Debug)]
-pub struct SPIInterface<SPI, CS>
+pub struct SPIInterface<SPI, CS, E>
 where
     SPI: Transfer<u8>,
     SPI: Write<u8, Error = <SPI as Transfer<u8>>::Error>,
     <SPI as Transfer<u8>>::Error: Debug,
-    CS: OutputPin<Error = Infallible>,
+    CS: OutputPin<Error = E>,
+    E: Debug,
 {
     pub spi: SPI,
     pub cs: CS,
 }
 
-impl<SPI, CS> Interface for SPIInterface<SPI, CS>
+impl<SPI, CS, E> Interface for SPIInterface<SPI, CS, E>
 where
     SPI: Transfer<u8>,
     SPI: Write<u8, Error = <SPI as Transfer<u8>>::Error>,
     <SPI as Transfer<u8>>::Error: Debug,
-    CS: OutputPin<Error = Infallible>,
+    CS: OutputPin<Error = E>,
+    E: Debug,
 {
     type Error = <SPI as Transfer<u8>>::Error;
 
